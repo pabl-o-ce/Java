@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param><!-- -->
+        <param-name>javax.faces.PROJECT_STAGE</param-name> <!-- -->
+        <param-value>Development</param-value><!-- para el ambiente de desarrollo/ productions -->
+    </context-param><!-- -->
+    <servlet><!-- -->
+        <servlet-name>Faces Servlet</servlet-name><!-- la servelt del framework de java server faces -->
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class><!-- nombre de la clase -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name><!-- el mapeo en terminos de rutas para que todos los pedidos pase por el faces -->
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <session-config><!-- para el manejo de objetos por sesiones -->
+        <session-timeout>
+            30<!-- el timeout si esque no recibe peticiones le dice chao -->
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/index.xhtml</welcome-file><!-- la pagina de bienvenida que tu le das por default / -->
+    </welcome-file-list>
+</web-app>

@@ -1,0 +1,12 @@
+{
+  "name": "homework1",
+  "description": "javaee",
+  "private":true,
+  "version": "0.0.1",
+  "homepage": "index.xhtml",
+  "license": "copyright",
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "jquery": "2.1.1"
+  }
+}
