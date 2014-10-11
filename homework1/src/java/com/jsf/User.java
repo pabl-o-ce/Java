@@ -15,11 +15,12 @@ import javax.inject.Inject;
  *
  * @author dfellig
  */
-
 @Named
 @SessionScoped
-public class User implements Serializable{
-    @Inject AppData appData;
+public class User implements Serializable {
+
+    @Inject
+    AppData appData;
 
     private String name;
     private String password;
@@ -40,7 +41,7 @@ public class User implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getRetypedPassword() {
         return retypedPassword;
     }
@@ -48,17 +49,40 @@ public class User implements Serializable{
     public void setRetypedPassword(String retypedPassword) {
         this.retypedPassword = retypedPassword;
     }
-    
-    public String checkRetypedPassword(){
-        if(password.matches(retypedPassword)){
-            appData.addUser(name);
-            return "index?faces-redirect=true";
-        }else{
+
+    public String registrationUser() {
+        if (appData.valUniqueUser(name)) {
+            if (password.matches(retypedPassword)) {
+                appData.addUserl(name, password);
+                return "login?faces-redirect=true";
+            } else {
+                return null;
+            }
+        } else {
             return null;
         }
-        
+
     }
 
-   
+    public String loginUser() {
+        if (appData.loginValidate(name, password)) {
+            return "index?faces-redirect=true";
+        } else {
+            return null;
+        }
+    }
+
+    public String logoutUser() {
+        appData.logoutTerm(name);
+        return "login?faces-redirect=true";
+    }
+
+    public Object[] onlineUsers() {
+        return appData.getOnline();
+    }
+
+    public Object[] offlineUsers() {
+        return appData.getOffline();
+    }
 
 }

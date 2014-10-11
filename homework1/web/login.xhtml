@@ -24,7 +24,7 @@
                             <p><label>Username: <h:inputText class="form-control" value="#{user.name}"/></label></p>
                             <p><label>Password: <h:inputSecret class="form-control" value="#{user.password}"/> </label></p>
                     </fieldset>
-                        <h:commandButton value="Enviar" action="#{appData.checkForRegistered}" class="btn btn-default"/>
+                        <h:commandButton value="Enviar" action="#{user.loginUser}" class="btn btn-default"/>
                 </h:form>
             </ui:define>
     </body>

@@ -8,6 +8,7 @@ package com.jsf;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.Application;
 import javax.faces.component.UIComponent;
@@ -26,6 +27,10 @@ public class AppData {
 
     final private ArrayList registeredUserList = new ArrayList();
     final private ArrayList toUserList = new ArrayList();
+    final private ArrayList offline = new ArrayList();
+    final private ArrayList online = new ArrayList();
+    private LinkedHashMap<String, String> users = new LinkedHashMap();
+    private LinkedHashMap<String, Boolean> usersStatus = new LinkedHashMap();
     private LinkedHashMap<String, Integer> userToMessagesMap = new LinkedHashMap();
     private LinkedHashMap<Integer, Message> intToMessages = new LinkedHashMap();
     Object[] registeredUserArray;
@@ -97,6 +102,31 @@ public class AppData {
         registeredUserList.add(user);
     }
 
+    public void addOnlineUser(String user) {
+        online.add(user);
+        offline.remove(user);
+    }
+
+    public void addOfflineUser(String user) {
+        offline.add(user);
+        online.remove(user);
+    }
+
+    public boolean valUniqueUser(String user) {
+        if (users.containsKey(user)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void addUserl(String user, String password) {
+        registeredUserList.add(user);
+        this.addOfflineUser(user);
+        users.put(user, password);
+        usersStatus.put(user, false);
+    }
+
     private int generateUserID() {
         return ++userID;
     }
@@ -107,6 +137,18 @@ public class AppData {
         component.clearInitialState();
         registeredUserArray = registeredUserList.toArray();
         return registeredUserArray;
+    }
+
+    public Object[] getrUserArray() {
+        return registeredUserList.toArray();
+    }
+
+    public Object[] getOnline() {
+        return online.toArray();
+    }
+
+    public Object[] getOffline() {
+        return offline.toArray();
     }
 
     public void setRegisteredUserArray(Object[] registeredUserArray) {
@@ -172,6 +214,35 @@ public class AppData {
         } else {
             return "signup";
         }
+    }
+
+    public boolean loginValidate(String user, String pass) {
+        boolean choice = false;
+        if (users.containsKey(user)) {
+            String val = users.get(user);
+            if (val.equals(pass)) {
+                boolean active = usersStatus.get(user);
+                if (active == false) {
+                    choice = true;
+                    this.loginStatus(user, true);
+                    this.addOnlineUser(user);
+                }
+            }
+        }
+        return choice;
+    }
+
+    public void loginStatus(String user, Boolean status) {
+        usersStatus.replace(user, false, status);
+    }
+
+    public void logoutTerm(String user) {
+        this.addOfflineUser(user);
+        this.logoutStatus(user, false);
+    }
+
+    public void logoutStatus(String user, Boolean status) {
+        usersStatus.replace(user, true, status);
     }
 
     public boolean checkIfMessagesEmpty() {

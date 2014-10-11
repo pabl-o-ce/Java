@@ -23,7 +23,7 @@
                         <legend>Nuevo Mensaje</legend>
                             <p><label>Para: <h:inputText class="form-control" value="#{appData.toUsersString}"/></label></p>
                             <p><label>De: <h:inputText class="form-control" value="#{appData.fromUser}"/> </label></p> 
-                            <p><label>Mensaje:</label></p> <h:inputTextarea value="#{appData.messageTextArea}" rows="5" cols="35"/>      
+                            <p><label>Mensaje:</label></p> <h:inputTextarea value="#{appData.messageTextArea}" class="form-control" rows="5"/>      
                     </fieldset>
                         <h:commandButton value="Enviar" action="#{appData.sendMessage}" class="btn btn-default"/>
                 </h:form>
