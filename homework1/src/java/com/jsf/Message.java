@@ -60,7 +60,7 @@ public class Message {
     }
 
     public void setTime() {
-        time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        time = new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss").format(Calendar.getInstance().getTime());
     }
 
     public String getTime() {
