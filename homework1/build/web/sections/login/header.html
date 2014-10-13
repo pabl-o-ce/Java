@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <head><title>IGNORED</title></head>
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
     <body>
         <ui:composition>
             <div class="container-fluid">
@@ -21,12 +23,6 @@ and open the template in the editor.
                     </button>
                     <a class="navbar-brand" href="#">Chat</a>
                 </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <p class="navbar-text">Hi, <i class="fa fa-user"></i> #{user.name}</p>
-                    <h:form class="navbar-form navbar-left">
-                        <h:commandButton action="#{user.logoutUser()}" value="Logout" class="btn btn-default"/>
-                    </h:form>
-                </ul>
             </div>
         </ui:composition>
     </body>

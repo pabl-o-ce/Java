@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author dfellig
+ * @author pablocarrera
  */
 @Named
 @SessionScoped
@@ -25,7 +25,8 @@ public class User implements Serializable {
     private String name;
     private String password;
     private String retypedPassword;
-
+    String messageTextArea;
+    String toUsersString = "";
     public String getName() {
         return name;
     }
@@ -85,4 +86,29 @@ public class User implements Serializable {
         return appData.getOffline();
     }
 
+    public String getToUsersString() {
+
+        return toUsersString;
+    }
+
+    public void setToUsersString(String toUsersString) {
+        this.toUsersString = toUsersString;
+    }
+
+    public String getMessageTextArea() {
+        return messageTextArea;
+    }
+
+    public void setMessageTextArea(String messageTextArea) {
+        this.messageTextArea = messageTextArea;
+    }
+    
+    public String sendMessage(){
+        Message sms = new Message(name, this.getToUsersString(), this.getMessageTextArea());
+        appData.setUserMessagesMap(this.getToUsersString(), sms);
+        return "inbox";
+    }
+    public Object[] getMessages(){
+        return appData.getMessagesByname(name);
+    }
 }

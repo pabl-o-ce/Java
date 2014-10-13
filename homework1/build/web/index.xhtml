@@ -20,18 +20,27 @@
             </ui:define>
 
             <ui:define name="content">
-                <div class="h2">Users <small style="font-style: italic">online <i class="fa fa-circle fa-fw" style="color:#2ECC40"></i></small></div>
-                <ul class="list-group">
-                    <ui:repeat value="#{appData.getOnline()}" var="item">
-                        <li class="list-group-item"><h:outputText value="#{item}"/></li>
-                    </ui:repeat>
-                </ul>
-                <div class="h2">Users <small style="font-style: italic">offline <i class="fa fa-circle fa-fw" style="color:#DDDDDD"></i></small></div>
-                <ul class="list-group">
-                    <ui:repeat value="#{appData.getOffline()}" var="item">
-                        <li class="list-group-item"><h:outputText value="#{item}"/></li>
-                    </ui:repeat>
-                </ul>
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bookmark-o"></i> Contacts</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-success">
+                            <div class="h5">Users <small style="font-style: italic">online</small><i class="pull-right fa fa-power-off fa-fw" style="color:#2ECC40"></i></div>
+                        </li>
+                        <ui:repeat value="#{appData.getOnline()}" var="item">
+                            <li class="list-group-item"><h:outputText value="#{item}"/></li>
+                        </ui:repeat>
+                    </ul>
+                    <ul class="list-group">
+                        <li class="list-group-item disabled">
+                            <div class="h5">Users <small style="font-style: italic">offline</small><i class="pull-right fa fa-power-off fa-fw" style="color:#AAAAAA"></i></div>
+                        </li>
+                        <ui:repeat value="#{appData.getOffline()}" var="item">
+                            <li class="list-group-item"><h:outputText value="#{item}"/></li>
+                        </ui:repeat>
+                    </ul>
+                </div>
             </ui:define>
         </body>
     </ui:composition>

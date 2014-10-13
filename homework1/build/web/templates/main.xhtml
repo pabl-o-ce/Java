@@ -20,11 +20,13 @@
             <ui:insert name="top">Top</ui:insert>
         </div>
         <div class="row" style="margin: 0;padding: 0 10px 0 10px;">
-            <div class="list-group col-md-4">
+            <div class="list-group col-md-2">
                 <ui:insert name="left">Left</ui:insert>
             </div>
-            <div id="content" class="panel panel-default col-md-8">
-                <ui:insert name="content">Content</ui:insert>
+            <div class="col-md-10">
+                <div id="content" class="panel panel-default" style="margin-left: 10px">
+                    <ui:insert name="content">Content</ui:insert>
+                </div>
             </div>
         </div>
     </h:body>

@@ -2,14 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/templates/main.xhtml">
-    <head>
-        <ui:define name="windowTitle">
+        <head>
+            <ui:define name="windowTitle">
 
-        </ui:define>
-    </head>
-    <body><ui:define name="top">
+            </ui:define>
+        </head>
+        <body><ui:define name="top">
                 <ui:include src="/sections/chat/header.xhtml"/>
             </ui:define>
 
@@ -18,17 +19,40 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:form class="form-horizontal">
-                    <fieldset>
-                        <legend>Nuevo Mensaje</legend>
-                            <p><label>Para: <h:inputText class="form-control" value="#{appData.toUsersString}"/></label></p>
-                            <p><label>De: <h:inputText class="form-control" value="#{appData.fromUser}"/> </label></p> 
-                            <p><label>Mensaje:</label></p> <h:inputTextarea value="#{appData.messageTextArea}" class="form-control" rows="5"/>      
-                    </fieldset>
-                        <h:commandButton value="Enviar" action="#{appData.sendMessage}" class="btn btn-default"/>
-                </h:form>
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bookmark-o"></i> Messages</h3>
+                </div>
+                <div class="panel-body">
+                    <h:form class="form-horizontal">
+                        <fieldset>
+                            <legend>New Message</legend>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">To:&nbsp;&nbsp;</label>
+                                <div class="col-md-4">
+                                    <h:selectOneMenu value="#{user.toUsersString}" class="form-control">
+                                        <f:selectItem itemValue="" itemLabel="Choose Contact" />
+                                        <f:selectItems value="#{appData.getrUserArray()}" 
+                                                      var="n" 
+                                                      itemValue="#{n}" 
+                                                      itemLabel="#{n}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-1 col-md-10">
+                                    <h:inputTextarea value="#{user.messageTextArea}" class="form-control" rows="2"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-1 col-md-10">
+                                    <h:commandButton value="Enviar" action="#{user.sendMessage()}" class="btn btn-success"/>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </h:form>
+                </div>
             </ui:define>
-    </body>
+        </body>
     </ui:composition>
 </html>
 
