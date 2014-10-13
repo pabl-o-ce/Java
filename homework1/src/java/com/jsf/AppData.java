@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.Application;
 import javax.faces.component.UIComponent;
@@ -32,13 +34,16 @@ public class AppData {
     private final LinkedHashMap<String, Message> userMessagesMap = new LinkedHashMap();
     private LinkedHashMap<String, String> users = new LinkedHashMap();
     private LinkedHashMap<String, Boolean> usersStatus = new LinkedHashMap();
+    private static Pattern pattern;
+    private static Matcher matcher;
+
+    public AppData() {
+
+    }
 
     public Object getUsers() {
 
         return registeredUserList.toArray();
-    }
-
-    public AppData() {
     }
 
     public void addUser(String user) {
@@ -123,12 +128,19 @@ public class AppData {
     public Object[] getMessagesByname(String to) {
         ArrayList usersms = new ArrayList<Message>();
         for (String key : userMessagesMap.keySet()) {
-            if(to.equals(userMessagesMap.get(key).getTo())){
+            if (this.userMatch(userMessagesMap.get(key).getTo(), to)) {
                 usersms.add(userMessagesMap.get(key));
             }
         }
-        
+
         return usersms.toArray();
+    }
+
+    public boolean userMatch(String key, String name) {
+        pattern = Pattern.compile(name);
+        matcher = pattern.matcher(key);
+        boolean match = matcher.lookingAt();
+        return match;
     }
 
 }

@@ -105,7 +105,9 @@ public class User implements Serializable {
     
     public String sendMessage(){
         Message sms = new Message(name, this.getToUsersString(), this.getMessageTextArea());
-        appData.setUserMessagesMap(this.getToUsersString(), sms);
+        String fecha = sms.getTime();
+        String key = this.getToUsersString().concat(fecha);
+        appData.setUserMessagesMap(key, sms);
         return "inbox";
     }
     public Object[] getMessages(){
