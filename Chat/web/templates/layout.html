@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <head jsf:id="head">
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link jsf:name="./css/default.css"/>
+        <link jsf:name="./css/cssLayout.css"/>
+        <link jsf:name="./css/bootstrap.min.css"/>
+        <link jsf:name="./css/font-awesome.min.css"/>
+        <title><ui:insert name="windowTitle"/></title>
+    </head>
+    <h:body jsf:id="body">
+        <div id="" class="top navbar navbar-default">
+            <ui:insert name="top">Top</ui:insert>
+        </div>
+        <div class="row" style="margin: 0;padding: 0 10px 0 10px;">
+            <div class="list-group col-md-2">
+                <ui:insert name="left">Left</ui:insert>
+            </div>
+            <div id="content" class="panel panel-default col-md-10">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+    </h:body>
+</html>

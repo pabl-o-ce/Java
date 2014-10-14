@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:composition template="/templates/main.xhtml">
+        <head>
+            <title>Facelet Title</title>
+        </head>
+        <body>
+            <ui:define name="windowTitle">
+
+            </ui:define>
+
+            <ui:define name="top">
+                <ui:include src="/sections/login/header.html"/>
+                <object name="top" type="text/html" data="/sections/login/header.html"></object>
+            </ui:define>
+
+            <ui:define name="left">
+                <ui:include src="/sections/login/sidebar.html"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bookmark-o"></i> Sign-up</h3>
+                </div>
+                <div class="panel-body">
+                    <h:form class="form-horizontal" style="margin-bottom: 20px;">
+                        <fieldset>
+                            <legend>Please register:</legend>
+                            <p><label>Username: <h:inputText class="form-control" value="#{user.name}"/> </label></p>
+                            <p><label>Password: <h:inputSecret class="form-control" value="#{user.password}"/></label></p> 
+                            <p><label>Confirm Password: <h:inputSecret class="form-control" value="#{user.retypedPassword}"/></label></p>
+
+                        </fieldset>
+                        <h:commandButton value="Send" action="#{user.registrationUser}" class="btn btn-default"/>
+                    </h:form>
+                </div>
+            </ui:define>
+        </body>
+    </ui:composition>
+</html>
