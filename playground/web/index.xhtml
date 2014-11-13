@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bookmark-o"></i> Sign-up</h3>
+        </div>
+        <div class="panel-body">
+            <h:form class="form-horizontal" style="margin-bottom: 20px;">
+                <fieldset>
+                    <legend>Please register:</legend>
+                    <p><label>Username: <h:inputText class="form-control" value="#{user.name}"/> </label></p>
+                    <p><label>Password: <h:inputSecret class="form-control" value="#{user.password}"/></label></p> 
+                    <p><label>Confirm Password: <h:inputSecret class="form-control" value="#{user.retypedPassword}"/></label></p>
+
+                </fieldset>
+                <h:commandButton value="Send" action="#{user.registrationUser}" class="btn btn-default"/>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

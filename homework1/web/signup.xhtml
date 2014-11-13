@@ -28,9 +28,34 @@
                     <h:form class="form-horizontal" style="margin-bottom: 20px;">
                         <fieldset>
                             <legend>Please register:</legend>
-                            <p><label>Username: <h:inputText class="form-control" value="#{user.name}"/> </label></p>
-                            <p><label>Password: <h:inputSecret class="form-control" value="#{user.password}"/></label></p> 
-                            <p><label>Confirm Password: <h:inputSecret class="form-control" value="#{user.retypedPassword}"/></label></p>
+                            <p><label>Username: <h:inputText id="userName"
+                                                             class="form-control" 
+                                                             value="#{user.name}"
+                                                             required="true"/></label>
+                                <h:message for="userName"
+                                           class="alert alert-danger"
+                                           errorStyle="margin:0 10px 0 10px;"
+                                           role="alert"/>
+                            </p>
+                            <p>
+                                <label>Password: <h:inputSecret id="passWord"
+                                                               class="form-control" 
+                                                               value="#{user.password}"
+                                                               required="true"/></label>
+                                <h:message for="passWord"
+                                           class="alert alert-danger" 
+                                           errorStyle="margin:0 10px 0 10px;"
+                                           role="alert"/>
+                            </p>
+                            <p><label>Confirm Password: <h:inputSecret id="passWordConfirm"
+                                                                class="form-control" 
+                                                                value="#{user.retypedPassword}"
+                                                                required="true"/></label>
+                                <h:message for="passWordConfirm"
+                                           class="alert alert-danger" 
+                                           errorStyle="margin:0 10px 0 10px;"
+                                           role="alert"/>
+                            </p>
 
                         </fieldset>
                         <h:commandButton value="Send" action="#{user.registrationUser}" class="btn btn-default"/>
