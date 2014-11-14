@@ -14,12 +14,17 @@ public class Products {
     private String color;
     private float price;
     private int stock;
+    private int id;
     
-    Products(String nm, String col, float pr, int st) {
-        this.setName(nm);
-        this.setColor(col);
-        this.setPrice(pr);
-        this.setStock(st);
+    Products(int i,String nm, String col, float pr, int st) {
+        id=i;
+        name=nm;
+        color=col;
+        price=pr;
+        stock=st;
+    }
+    public int getId(){
+        return id;
     }
 
     public void setName(String nm){
@@ -43,10 +48,14 @@ public class Products {
     public void setStock(int st){
         stock = st;
     }
-    public float getStock(){
+    public int getStock(){
         return stock;
     }
     public void restStock(int res){
         stock -= res;
+    }
+    public String getNameColor(){
+        String p = this.getName()+ " ".concat(this.getColor());
+        return p;
     }
 }

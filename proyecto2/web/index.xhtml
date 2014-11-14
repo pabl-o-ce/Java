@@ -1,12 +1,110 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="/templates/layout.xhtml">
+        <head>
+            <ui:define name="windowTitle">
+
+            </ui:define>
+        </head>
+        <body><ui:define name="top">
+                <ui:include src="/sections/header.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bookmark-o"></i> Clothes</h3>
+                </div>
+                <div class="panel-body">
+                    <legend>Clothes</legend>
+                    <h:dataTable value="#{appStore.getItems()}" var="clothes"
+                                 class="table table-hover table-bordered">
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                                #{clothes.getName()}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Color</f:facet>
+                                #{clothes.getColor()}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Price</f:facet>
+                               $ #{clothes.getPrice()}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Stock</f:facet>
+                               #{clothes.getStock()}
+                        </h:column>
+                    </h:dataTable>
+                    <h:form class="form-horizontal">
+                        <fieldset>
+                            <legend>Order</legend>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Clothes:&#160;&#160;</label>
+                                <div class="col-md-4">
+                                    <h:selectOneMenu value="#{appStore.indexpro}" class="form-control" 
+                                                     required="true" 
+                                                     requiredMessage="Debe escoger el producto que quiera comprar"
+                                                     id="product"
+                                                     validator="#{appStore.validateProduct}">
+                                        <f:selectItem itemValue="-1" itemLabel="Choose Product" />
+                                        <f:selectItems value="#{appStore.getItems()}" 
+                                                      var="n" 
+                                                      itemValue="#{n.getId()}" 
+                                                      itemLabel="#{n.getNameColor()}"/>
+                                        <f:ajax event="blur" 
+                                                render="productError"
+                                                immediate="true"/>
+                                    </h:selectOneMenu>
+                                    <span id="helpBlock" class="help-block">
+                                        <h:message id="productError"
+                                                   for="product"
+                                                   errorStyle="color:red"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Cantidad:&#160;&#160;</label>
+                                <div class="col-sm-4">
+                                    <h:inputText id="quantity" 
+                                                 value="#{appStore.cantidad}" 
+                                                 class="form-control" 
+                                                 required="true" 
+                                                 requiredMessage="Debe escoger la cantidad que guste comprar"
+                                                 validator="#{appStore.validateQuantity}">
+                                        <f:ajax event="blur" 
+                                                render="quantityError"
+                                                immediate="true"/>
+                                    </h:inputText>
+                                    <span id="helpBlock" class="help-block">
+                                        <h:message id="quantityError"
+                                                   for="quantity"
+                                                   errorStyle="color:red"/>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    #{appStore.getTotalMessage()}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-1 col-md-10">
+                                    <h:commandButton value="Ordenar" action="#{appStore.sendOrder()}" class="btn btn-success"/>
+                                    
+                                </div>
+                            </div>
+                        </fieldset>
+                    </h:form>
+                </div>
+            </ui:define>
+        </body>
+    </ui:composition>
 </html>
 
